@@ -1,0 +1,50 @@
+<%- include('../../partials/header.ejs') %> <%-
+include('../../partials/navbar.ejs') %>
+<h2>
+  <div class="container">
+    <br>
+    <div class="card border-light">
+      
+      <div class="card-header">
+        
+        <h4>editing - <%= category.title%></h4>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="/categories/updatecategory" onsubmit="alertEnterCategoryName(event, this)">
+          <input
+            type="text"
+            class="form-control"
+            name="editcategory"
+            id="editcategory"
+            placeholder="Insert a category name"
+          />
+      <hr>
+      <input type="hidden" name="id" value="<%= category.category_id %>">
+            <button class="btn btn-primary form-control">
+              update category
+            </button>
+        </form>
+        <a href="/admin/categories" class="btn btn-danger form-control">cancel edition</a>
+      
+      
+      </div>
+    </div>
+  </div>
+</h2>
+<%- include('../../partials/footer.ejs') %>
+
+<script>
+  const categoryNameInput = document.querySelector('#editcategory')
+  categoryNameInput.focus();
+
+  function alertEnterCategoryName(event, form) {
+    event.preventDefault();
+    if (!categoryNameInput.value) return alert('Enter a category name!');
+
+    const confirmation  = confirm('Are you sure you want to update this category?');
+
+    if (confirmation) form.submit();
+
+    
+  }
+</script>

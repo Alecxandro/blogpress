@@ -1,0 +1,43 @@
+<%- include('../../partials/header.ejs') %> <%-
+include('../../partials/navbar.ejs') %>
+<h2>
+  <div class="container">
+    <br>
+    <div class="card border-light">
+      
+      <div class="card-header">
+        
+        <h4>category register</h4>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="/categories/save" onsubmit="alertEnterCategoryName(event, this)">
+          <input
+            type="text"
+            class="form-control"
+            name="categoryname"
+            id="categoryname"
+            placeholder="Insert a category name"
+          />
+      <hr>
+            <button class="btn btn-primary form-control">
+              Register new category
+            </button>
+        </form>
+      
+      
+      </div>
+    </div>
+  </div>
+</h2>
+<%- include('../../partials/footer.ejs') %>
+
+<script>
+  const categoryNameInput = document.querySelector('#categoryname')
+  categoryNameInput.focus();
+
+  function alertEnterCategoryName(event, form) {
+    event.preventDefault();
+    if (!categoryNameInput.value) return alert('Enter a category name!');
+    form.submit();
+  }
+</script>
